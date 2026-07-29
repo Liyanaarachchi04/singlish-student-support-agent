@@ -1,0 +1,24 @@
+=== HORIZON CAMPUS STUDENT SUPPORT & ACADEMIC REGULATIONS ===
+
+Section 1: Course Registration & Prerequisites
+- Students must register for core modules at the beginning of each semester.
+- Prerequisites for IT41043 (Intelligent Systems / Agentic AI) include IT21010 Object Oriented Programming and IT31020 Database Management Systems.
+- Late registration incurs a fee of LKR 1,500 after the second week of the semester.
+
+Section 2: Repeat Examinations & Re-sits
+- A student receiving a grade of C- or below in a module can sit for a repeat examination.
+- To register for a repeat exam (repeat register / repeat sit), students must submit Form A2 to the Academic Registrar office within 14 days of results publication.
+- Repeat examination fee per module is LKR 3,500.
+- Maximum grade achievable for a repeat attempt is capped at 'C' grade unless a valid Medical Certificate (MC) was submitted.
+
+Section 3: Medical Certificates & Attendance Policy
+- Medical Certificates (MC) must be approved by the Campus Medical Officer within 7 days of missing an exam or continuous assessment.
+- Minimum required lecture attendance is 80% to be eligible to sit for the final semester examination.
+
+Section 4: Student Welfare & Scholarships
+- Bursary and scholarship application forms are available at the Student Welfare Division (Building B, Floor 2).
+- Queries regarding hostel allocation, cafeteria complaints, or student IDs are processed by the Student Affairs Unit.
+
+Section 5: Research Project Guidelines (IT41043)
+- The assignment brief requires designing, building, and deploying an Agentic AI application using Groq, OpenRouter, and Streamlit.
+- Research focus: Evaluating Multilingual AI Chatbots for Student Support Services in Sri Lankan Universities (code-mixed Sinhala-English / Singlish queries).
