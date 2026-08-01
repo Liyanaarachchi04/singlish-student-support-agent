@@ -1,14 +1,15 @@
-# Multi-Agent Orchestration & Router Logic
 import os
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from pydantic import BaseModel, Field
 
 from langchain_groq import ChatGroq
-from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
-from src.rag_pipeline import query_rag_system
+try:
+    from src.rag_pipeline import query_rag_system
+except ModuleNotFoundError:
+    from rag_pipeline import query_rag_system
 
 
 # ==========================================
@@ -34,23 +35,19 @@ class FinalResponse(BaseModel):
 
 
 # ==========================================
-# 2. AGENT INITIALIZATION & HELPER FUNCTIONS
+# 2. AGENT INITIALIZATION (GROQ ENGINE)
 # ==========================================
 
-def get_groq_router_llm():
-    """Returns low-latency Groq model for intent routing."""
+def get_groq_llm(model_name: str = "llama-3.1-8b-instant", temp: float = 0.0):
+    """Returns Groq model with robust API key check."""
     api_key = os.getenv("GROQ_API_KEY")
-    return ChatGroq(model_name="llama-3.1-8b-instant", groq_api_key=api_key, temperature=0.0)
-
-def get_openrouter_synthesis_llm():
-    """Returns high-reasoning model (Claude 3.5 Sonnet / GPT-4o class via OpenRouter) for final synthesis."""
-    api_key = os.getenv("OPENROUTER_API_KEY")
-    return ChatOpenAI(
-        model="anthropic/claude-3.5-sonnet",
-        openai_api_key=api_key,
-        openai_api_base="https://openrouter.ai/api/v1",
-        temperature=0.2
-    )
+    if not api_key:
+        try:
+            import streamlit as st
+            api_key = st.secrets["GROQ_API_KEY"]
+        except Exception:
+            pass
+    return ChatGroq(model_name=model_name, groq_api_key=api_key, temperature=temp)
 
 
 # ==========================================
@@ -58,8 +55,8 @@ def get_openrouter_synthesis_llm():
 # ==========================================
 
 def agent_1_intent_router(query: str) -> RouterOutput:
-    """Agent 1: Fast Intent Classifier using Groq Llama 3.1 (Router Pattern)."""
-    llm = get_groq_router_llm()
+    """Agent 1: Fast Intent Classifier using Groq Llama 3.1 8B (Router Pattern)."""
+    llm = get_groq_llm("llama-3.1-8b-instant", temp=0.0)
     parser = JsonOutputParser(pydantic_object=RouterOutput)
 
     prompt = ChatPromptTemplate.from_template(
@@ -83,8 +80,8 @@ def agent_2_rag_retriever(query: str) -> List[str]:
 
 
 def agent_3_reflection_critique(query: str) -> CritiqueOutput:
-    """Agent 3: Reflection / Self-Critique Agent targeting Singlish linguistic breakdown."""
-    llm = get_openrouter_synthesis_llm()
+    """Agent 3: Reflection Agent using Groq Llama 3.3 70B."""
+    llm = get_groq_llm("llama-3.3-70b-versatile", temp=0.1)
     parser = JsonOutputParser(pydantic_object=CritiqueOutput)
 
     prompt = ChatPromptTemplate.from_template(
@@ -102,8 +99,8 @@ def agent_3_reflection_critique(query: str) -> CritiqueOutput:
 
 
 def agent_4_final_synthesizer(query: str, router_res: RouterOutput, rag_contexts: List[str], critique_res: CritiqueOutput) -> str:
-    """Agent 4: Synthesizer model providing clear final response."""
-    llm = get_openrouter_synthesis_llm()
+    """Agent 4: Synthesizer model providing final response using Groq Llama 3.3 70B."""
+    llm = get_groq_llm("llama-3.3-70b-versatile", temp=0.3)
 
     context_str = "\n---\n".join(rag_contexts) if rag_contexts else "No external handbook context required."
 
@@ -160,14 +157,3 @@ def run_multi_agent_pipeline(user_query: str) -> FinalResponse:
         linguistic_critique=critique_data.model_dump(),
         final_answer=final_text
     )
-
-
-if __name__ == "__main__":
-    # Test execution locally
-    sample_query = "Repeat exam register karanne kohomada form A2 ganna codehada?"
-    print("=== TESTING MULTI-AGENT ORCHESTRATION ===")
-    response = run_multi_agent_pipeline(sample_query)
-    print(f"\nUser Query: {response.user_query}")
-    print(f"Detected Intent: {response.detected_intent}")
-    print(f"Critique Tokens: {response.linguistic_critique['singlish_tokens']}")
-    print(f"\nFinal Answer:\n{response.final_answer}")
