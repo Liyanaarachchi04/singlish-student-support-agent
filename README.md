@@ -1,5 +1,6 @@
 # Agentic AI Research Support Tool: Singlish Student Assistant & LLM Evaluator
 
+**Live URL** https://singlish-student-support-agent-nsy7edd8wn5htojuge5cms.streamlit.app/
 **Module:** IT41043 - Intelligent Systems (Agentic AI)  
 **Institution:** Horizon Campus Sri Lanka  
 **Student Name:** Kawshalya LiyanaArachchi (ITBIN-2313-0056)  
