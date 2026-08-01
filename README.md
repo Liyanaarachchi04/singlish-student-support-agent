@@ -52,4 +52,8 @@ sequenceDiagram
     Critique->>Critique: Analyze Tokenization & Extract Singlish Terms
     Critique-->>Synthesizer: Return Structural Critique Payload
     Synthesizer->>Synthesizer: Synthesize Final Grounded Answer
+<<<<<<< HEAD
     Synthesizer-->>Student: Display Structured UI Response
+=======
+    Synthesizer-->>Student: Display Structured UI Response
+>>>>>>> 1bded30d2a400ca7223107449851a315978d556a
