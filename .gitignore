@@ -1,0 +1,16 @@
+# Python environment
+venv/
+__pycache__/
+*.py[cod]
+
+# Local Streamlit Secrets (CRITICAL)
+.streamlit/secrets.toml
+.env
+
+# Vector store database folders
+data/chroma_db/
+*.chroma
+
+# OS Files
+.DS_Store
+Thumbs.db
