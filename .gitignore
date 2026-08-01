@@ -5,6 +5,7 @@ __pycache__/
 
 # Local Streamlit Secrets (CRITICAL)
 .streamlit/secrets.toml
+.streamlit/
 .env
 
 # Vector store database folders
