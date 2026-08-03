@@ -2,7 +2,8 @@
 
 **Module:** IT41043 - Intelligent Systems (Agentic AI)  
 **Institution:** Horizon Campus Sri Lanka  
-**Student Name:** Kawshalya LiyanaArachchi (ITBIN-2313-0056)  
+**Student Name:** ITBIN-2313-0056 - Kawshalya LiyanaArachchi 
+                  ITBIN-2313-0023 - Nipuni Malsha Dias
 **Live Application URL:** https://singlish-student-support-agent-nsy7edd8wn5htojuge5cms.streamlit.app/
 
 ---
