@@ -1,0 +1,8 @@
+TOPIC: 08 BIT Networking and Mobile Computing Structure
+Source: Students Handbook - Faculty of IT - 2024/24 (Revised 23.11.2023)
+
+--- HANDBOOK PAGE 18-20 ---
+5.2.2. BIT (Hons) in Networking and Mobile Computing[span_12](start_span)[span_12](end_span)
+* Year 1 & 2: Core IT foundations, Networking Fundamentals, Routing & Switching, Java / Python[span_13](start_span)[span_13](end_span). 
+* Year 3 & 4: Advanced Wireless Networks, Network Security, Cloud Infrastructure, Final Year Project[span_14](start_span)[span_14](end_span).
+*
