@@ -1,0 +1,8 @@
+TOPIC: 05 Degree Programmes - Courses Offered
+Source: Students Handbook - Faculty of IT - 2024/24 (Revised 23.11.2023)
+
+--- HANDBOOK PAGE 12 ---
+5. Degree Programmes 
+5.1. Courses Offered 
+5.1.1. BSc (Hons) in Information Technology: Focuses on software engineering, database management, enterprise systems, and intelligent applications[span_4](start_span)[span_4](end_span). 
+5.1.2. BIT (Hons) in Networking and Mobile Computing: Focuses on network architecture, cybersecurity, wireless communications[span_5](start_span)[span_5](end_span).
