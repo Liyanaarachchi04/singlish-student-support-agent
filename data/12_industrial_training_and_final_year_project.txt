@@ -1,0 +1,6 @@
+TOPIC: 12 Industrial Training and Final Year Project
+Source: Students Handbook - Faculty of IT - 2024/24 (Revised 23.11.2023)
+
+--- HANDBOOK PAGE 26 ---
+6.3. Industrial Training: Mandatory 6-month placement in a registered IT company[span_22](start_span)[span_22](end_span).
+6.4. Final Year Project: Independent research or development project under supervision[span_23](start_span)[span_23](end_span).
