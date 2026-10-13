@@ -1,0 +1,7 @@
+TOPIC: 11 Grading System and GPA
+Source: Students Handbook - Faculty of IT - 2024/24 (Revised 23.11.2023)
+
+--- HANDBOOK PAGE 25 ---
+6. Grading System[span_19](start_span)[span_19](end_span)
+6.1. Passing Course Unit: Minimum grade 'C' (2.0 GPA)[span_20](start_span)[span_20](end_span).
+6.2. GPA Calculation: Weighted average of grade points earned across registered modules[span_21](start_span)[span_21](end_span).
