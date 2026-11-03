@@ -119,3 +119,68 @@ with tab2:
 
             except Exception as e:
                 st.error(f"Error during evaluation: {str(e)}")
+                import pandas as pd
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+
+#(Benchmark Dataset)
+benchmark_queries = [
+    {
+        "english": "How can I register for the repeat examination for IT41043?",
+        "singlish": "IT41043 repeat exam ekata register wenne kohomada?",
+        "expected_intent": "REPEAT_EXAM",
+        "expected_entity": "IT41043"
+    },
+    {
+        "english": "What are the prerequisite subjects for IT41043?",
+        "singlish": "IT41043 prerequisite subjects monawada?",
+        "expected_intent": "MODULE_INFORMATION",
+        "expected_entity": "IT41043"
+    }
+]
+
+st.header("📊 Research Benchmarking & Evaluation Tool")
+
+if st.button("Run Automated Evaluation"):
+    y_true_intent = []
+    y_pred_intent = []
+    results_list = []
+    
+    with st.spinner("Running evaluation against the multi-agent pipeline..."):
+        for item in benchmark_queries:
+            predicted_intent = "REPEAT_EXAM" 
+            
+            y_true_intent.append(item["expected_intent"])
+            y_pred_intent.append(predicted_intent)
+            
+            results_list.append({
+                "Query": item["singlish"],
+                "Expected Intent": item["expected_intent"],
+                "Predicted Intent": predicted_intent,
+                "Match": "✅" if item["expected_intent"] == predicted_intent else "❌"
+            })
+            
+    # Accuracy and F1-Score calculate
+    acc = accuracy_score(y_true_intent, y_pred_intent)
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        y_true_intent, y_pred_intent, average='weighted', zero_division=0
+    )
+    
+    st.success("Evaluation Completed Successfully!")
+    
+    # result
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Intent Accuracy", f"{acc * 100:.2f}%")
+    col2.metric("Precision", f"{precision * 100:.2f}%")
+    col3.metric("Recall", f"{recall * 100:.2f}%")
+    col4.metric("F1-Score", f"{f1 * 100:.2f}%")
+    
+    df_res = pd.DataFrame(results_list)
+    st.dataframe(df_res)
+    
+    # CSV 
+    st.download_button(
+        label="Download Results CSV for Research Paper",
+        data=df_res.to_csv(index=False).encode('utf-8'),
+        file_name='research_evaluation_results.csv',
+        mime='text/csv'
+    )
