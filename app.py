@@ -121,6 +121,8 @@ with tab2:
                 st.error(f"Error during evaluation: {str(e)}")
                 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+import pandas as pd
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
 #(Benchmark Dataset)
 benchmark_queries = [
@@ -143,7 +145,7 @@ st.header("📊 Research Benchmarking & Evaluation Tool")
 if st.button("Run Automated Evaluation"):
     y_true_intent = []
     y_pred_intent = []
-    results_list = []
+    results_list = []  
     
     with st.spinner("Running evaluation against the multi-agent pipeline..."):
         for item in benchmark_queries:
@@ -177,7 +179,7 @@ if st.button("Run Automated Evaluation"):
     df_res = pd.DataFrame(results_list)
     st.dataframe(df_res)
     
-    # CSV 
+    # CSV download
     st.download_button(
         label="Download Results CSV for Research Paper",
         data=df_res.to_csv(index=False).encode('utf-8'),
