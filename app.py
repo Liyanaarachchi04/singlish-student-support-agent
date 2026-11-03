@@ -46,46 +46,45 @@ tab1, tab2 = st.tabs(["💬 Student Support Assistant", "🔬 Research Benchmark
 with tab1:
     st.subheader("Ask Academic Queries in Code-Mixed Singlish / English")
     st.caption("Example: *'Repeat exam register karanne kohomada form A2 ganna codehada?'* or *'IT41043 prerequisite subjects monawada?'*")
-
+    
     user_query = st.text_input("Enter your query below:", placeholder="Type your query here...")
-
+    
     if st.button("Submit Query", type="primary"):
-        if not user_query.strip():
+        if user_query.strip() == "":
             st.warning("Please enter a valid query.")
         else:
             with st.spinner("Processing query across Multi-Agent Pipeline..."):
                 try:
                     response = run_multi_agent_pipeline(user_query)
-
+                    
                     # Display Final Answer
                     st.success("### Response")
                     st.write(response.final_answer)
-
+                    
                     st.markdown("---")
                     
                     # Display Agent Breakdown
                     col1, col2 = st.columns(2)
                     
                     with col1:
-                        st.markdown("#### 🎯 Detected Intent")
+                        st.markdown("#### 🔍 Detected Intent")
                         st.code(f"Intent: {response.detected_intent}")
-
+                        
                         st.markdown("#### 📚 Retrieved Handbook Context")
                         if response.rag_context_used:
                             for idx, ctx in enumerate(response.rag_context_used, 1):
                                 st.info(f"**Chunk {idx}:** {ctx}")
                         else:
                             st.write("No handbook search was required for this query.")
-
+                            
                     with col2:
-                        st.markdown("#### 🔍 Singlish Linguistic Critique (Agent 3)")
+                        st.markdown("#### 🗣️ Singlish Linguistic Critique (Agent 3)")
                         critique = response.linguistic_critique
                         st.json(critique)
-
+                        
                 except Exception as e:
                     st.error(f"An error occurred while executing agents: {str(e)}")
-                    st.warning("Ensure API keys (GROQ_API_KEY and OPENROUTER_API_KEY) are configured in .streamlit/secrets.toml")
-
+                    st.warning("Ensure API keys (GROQ_API_KEY and OPENROUTER_API_KEY) are configured in secrets.toml.")
 # ==========================================
 # TAB 2: RESEARCH BENCHMARKING TOOL
 # ==========================================
